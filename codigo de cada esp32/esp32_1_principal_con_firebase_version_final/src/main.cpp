@@ -280,7 +280,6 @@ void envio_signo_vital(String valor_signo_vital, int numero_signo_vital)
       }
     }
 
-    // Aquí puedes realizar acciones adicionales basadas en la respuesta del servidor.
   }
   if (contador == 14000)
   {
@@ -362,7 +361,7 @@ void conseguir_datos_firebae()
       Serial.println("Datos JSON recibidos de Firebase: " + jsonData);
 
       // Parsea los datos JSON
-      StaticJsonDocument<256> doc; // Tamaño del documento JSON (ajusta según sea necesario)
+      StaticJsonDocument<256> doc;
       DeserializationError error = deserializeJson(doc, jsonData);
 
       // Verifica si hubo un error al parsear los datos JSON
