@@ -1,0 +1,25 @@
+{% extends './base_de_la_pagina.html' %}
+
+{% block title%} informacion {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="static/css/informacion.css">
+
+<!-- Agrega el PDF utilizando el elemento <embed> -->
+<div class="pdf-container">
+    <embed class="pdf-embed" src="static/documents/casos_clinicos.pdf" type="application/pdf" />
+</div>
+<div class="footer-divider"></div>
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>Diseñado por: Luis Miguel Cote Montaña y Carolina Arboleda</p>
+            <p>Programa: Ingenieria electronica</p>
+            <p>Año: 2023</p>
+        </div>
+        <div class="footer-logo">
+            <img src="static/images/usb_logo.png" alt="Logo de tu página">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,238 @@
+{% extends './base_de_la_pagina.html' %}
+
+{% block title%} casos {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="static/css/casos.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="simulacion-container">
+    <form method="POST" id="simulacion-form-solo-temperatura">
+        <div class="campo-container">
+            <label for="temperatura">Temperatura:</label>
+            <input type="text" id="temperatura" name="temperatura" class="campo">
+            <button class="btn-simular-Temperatura">Simular</button>
+        </div>
+        <div id="error-temperatura" class="error"></div>
+    </form>
+    <form method="POST" id="simulacion-form-solo-presion-arterial">
+        <div class="campo-container">
+            <label for="presion-arterial">Presión Arterial:</label>
+            <input type="text" id="presion-arterial" name="presion-arterial" class="campo">
+            <button class="btn-simular-presion-arterial">Simular</button>
+        </div>
+        <div id="error-presion-arterial" class="error"></div>
+    </form>
+    <form method="POST" id="simulacion-form-solo-ritmo-cardiaco">
+        <div class="campo-container">
+            <label for="ritmo-cardiaco">Ritmo Cardiaco:</label>
+            <input type="text" id="ritmo-cardiaco" name="ritmo-cardiaco" class="campo">
+            <button class="btn-simular-ritmo-cardiaco">Simular</button>
+            <div id="error-ritmo-cardiaco" class="error"></div>
+        </div>
+    </form>
+    <form method="POST" id="simulacion-form-solo-ritmo-respiratorio">
+        <div class="campo-container">
+            <label for="ritmo-respiratorio">Ritmo Respiratorio:</label>
+            <input type="text" id="ritmo-respiratorio" name="ritmo-respiratorio" class="campo">
+            <button class="btn-simular-ritmo-respiratorio">Simular</button>
+            <div id="error-ritmo-respiratorio" class="error"></div>
+        </div>
+    </form>
+</div>
+<div class="info-container-simulacion">
+    <div class="info-box-simulacion">
+        <div class="info-item-simulacion-titulo"><strong>Simulacion actual</div>
+        <div class="info-item-simulacion-cont"><strong>Presión Arterial: </strong> {{ presion_arterial }}</div>
+        <div class="info-item-simulacion-cont"><strong>Ritmo Cardíaco: </strong> {{ ritmo_cardiaco }}</div>
+        <div class="info-item-simulacion-cont"><strong>Temperatura: </strong> {{ temperatura }}</div>
+        <div class="info-item-simulacion-cont"><strong>Ritmo Respiratorio: </strong> {{ ritmo_respiratorio }}</div>
+    </div>
+</div>
+<div id="tabla-container">
+    <table>
+        <thead>
+            <tr class="encabezado">
+                <th>Caso Clínico</th>
+                <th>Temperatura</th>
+                <th>Presión Arterial</th>
+                <th>Ritmo Cardiaco</th>
+                <th>Frecuencia Respiratoria</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Caso 1</td>
+            <td>37.2°C</td>
+            <td>160/90 mmHg</td>
+            <td>80 bpm</td>
+            <td>18 rpm</td>
+        </tr>
+        <tr>
+            <td>Caso 2</td>
+            <td>38.0°C</td>
+            <td>180/100 mmHg</td>
+            <td>110 bpm</td>
+            <td>24 rpm</td>
+        </tr>
+        <tr>
+            <td>Caso 3</td>
+            <td>38.5°C</td>
+            <td>90/60 mmHg</td>
+            <td>120 bpm</td>
+            <td>40 rpm</td>
+        </tr>
+        <tr>
+            <td>Caso 4</td>
+            <td>37.0°C</td>
+            <td>140/85 mmHg</td>
+            <td>75 bpm</td>
+            <td>16 rpm</td>
+        </tr>
+        <tr>
+            <td>Caso 5</td>
+            <td>39.5°C</td>
+            <td>90/80 mmHg</td>
+            <td>80 bpm</td>
+            <td>16 rpm</td>
+        </tr>
+    </table>
+</div>
+<form method="POST" id="simular-caso-form">
+    <input type="hidden" name="selected-case" id="selected-case">
+    <div class="simular-caso-tabla">
+        <button type="submit" name="simular-caso" class="btn-simular-caso-tabla">Simular Caso (seleccione uno de la
+            tabla)</button>
+    </div>
+</form>
+<div class="footer-divider"></div> <!-- Línea blanca que se extiende a lo largo de la página -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>Diseñado por: Luis Miguel Cote Montaña y Carolina Arboleda</p>
+            <p>Programa: Ingenieria electronica</p>
+            <p>Año: 2023</p>
+        </div>
+        <div class="footer-logo">
+            <img src="static/images/usb_logo.png" alt="Logo de tu página">
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Al cargar la página, establece el texto inicial del botón.
+        var textoInicialBoton = 'Simular Caso (seleccione uno de la tabla)';
+        $('#tabla-container table tr:not(.encabezado)').click(function () {
+            // Verifica si la fila ya tiene la clase 'selected'.
+            if ($(this).hasClass('selected')) {
+                // Si ya está seleccionada, quita la selección y restablece el texto del botón.
+                $(this).removeClass('selected');
+                $('.btn-simular-caso-tabla').text(textoInicialBoton);
+                $('#selected-case').val(''); // Limpiar el campo oculto cuando se deselecciona la fila
+            } else {
+                // Si no está seleccionada, quita la clase 'selected' de todas las filas excepto las del encabezado.
+                $('#tabla-container table tr:not(.encabezado)').removeClass('selected');
+                // Agrega la clase 'selected' a la fila que se hizo clic.
+                $(this).addClass('selected');
+
+                // Obtén el texto del caso clínico seleccionado y actualiza el valor del campo oculto.
+                var casoClinico = $(this).find('td:first').text();
+                $('#selected-case').val(casoClinico);
+
+                // Cambia el texto del botón "Simular Caso" al texto del caso clínico seleccionado.
+                $('.btn-simular-caso-tabla').text('Simular ' + casoClinico);
+            }
+        });
+
+        // Agrega un controlador de eventos para el botón "Simular Caso".
+        // Agrega un controlador de eventos para el botón "Simular Caso".
+        $('.btn-simular-caso-tabla').click(function () {
+            // Verifica si alguna fila está seleccionada.
+            if ($('#tabla-container table tr.selected').length > 0) {
+                // Envía el formulario cuando se haga clic en el botón "Simular Caso"
+                $('#simular-caso-form').submit();
+            } else {
+                alert('Seleccione un caso de la tabla antes de simular.');
+            }
+        });
+        // Agrega un controlador de eventos para el botón "Simular Caso".
+        $('.btn-simular-caso-tabla').click(function () {
+            // Verifica si alguna fila está seleccionada.
+            if ($('#tabla-container table tr.selected').length > 0) {
+                // Realiza aquí la acción de simulación usando los datos de la fila seleccionada.
+            } else {
+                alert('Seleccione un caso de la tabla antes de simular.');
+            }
+        });
+
+    // Función para validar el formulario antes de enviarlo
+    $('#simulacion-form-solo-temperatura').submit(function(event) {
+        var temperatura = $("#temperatura").val();
+        if (temperatura === '') {
+            mostrarError('¡Debe escribir un número para la temperatura!');
+            event.preventDefault(); // Detiene el envío del formulario
+        } else if (isNaN(temperatura) || parseFloat(temperatura) < 36 || parseFloat(temperatura) > 40) {
+            mostrarError('¡La temperatura debe ser un número entre 36 y 40 grados Celsius!');
+            event.preventDefault(); // Detiene el envío del formulario
+        }
+    });
+
+    $('#simulacion-form-solo-presion-arterial').submit(function(event) {
+        var presionArterial = $("#presion-arterial").val();
+        if (presionArterial === '') {
+            mostrarError('La presión arterial debe tener el formato correcto (por ejemplo, 120/80)');
+            event.preventDefault();
+        } else if (!/^(\d{2,3})\/(\d{2,3})$/.test(presionArterial)) {
+            mostrarError('La presión arterial debe tener el formato correcto (por ejemplo, 120/80)');
+            event.preventDefault();
+        } else {
+            var partes = presionArterial.split('/');
+            var sistolica = parseInt(partes[0]);
+            var diastolica = parseInt(partes[1]);
+            if (sistolica < 90 || sistolica > 180 || diastolica < 60 || diastolica >= 100) {
+                mostrarError('La presión arterial debe estar en el rango de 90/60 mmHg a 180/100 mmHg');
+                event.preventDefault();
+            }
+        }
+    });
+
+    $('#simulacion-form-solo-ritmo-cardiaco').submit(function(event) {
+        var ritmoCardiaco = $("#ritmo-cardiaco").val();
+        if (ritmoCardiaco === '') {
+            mostrarError('¡Escribe un valor numérico para el ritmo cardíaco!');
+            event.preventDefault(); // Detiene el envío del formulario
+        } else {
+            var ritmoCardiacoNum = parseFloat(ritmoCardiaco);
+            if (isNaN(ritmoCardiacoNum) || ritmoCardiacoNum < 60 || ritmoCardiacoNum > 150) {
+                mostrarError('¡El ritmo cardíaco debe estar entre 60 y 150 latidos por minuto!');
+                event.preventDefault(); // Detiene el envío del formulario
+            }
+        }
+    });
+
+    $('#simulacion-form-solo-ritmo-respiratorio').submit(function(event) {
+        var ritmoRespiratorio = $("#ritmo-respiratorio").val();
+        if (ritmoRespiratorio === '') {
+            mostrarError('¡Escribe un valor numérico para el ritmo respiratorio!');
+            event.preventDefault(); // Detiene el envío del formulario
+        } else {
+            var ritmoRespiratorioNum = parseFloat(ritmoRespiratorio);
+            if (isNaN(ritmoRespiratorioNum) || ritmoRespiratorioNum < 12 || ritmoRespiratorioNum > 50) {
+                mostrarError('¡El ritmo respiratorio debe estar entre 12 y 50 respiraciones por minuto!');
+                event.preventDefault(); // Detiene el envío del formulario
+            }
+        }
+    });
+    // Función para mostrar mensajes de error
+    function mostrarError(mensaje) {
+        alert(mensaje);
+    }
+
+
+    });
+</script>
+{% endblock %}

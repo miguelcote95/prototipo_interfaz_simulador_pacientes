@@ -1,0 +1,65 @@
+.with-background-image {
+    background-image: url("./static/image/frame_derecho_login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white; /* Cambia el color del texto del botón */
+    border: none; /* Quita el borde del botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Cambia el color del botón y del texto al pasar el cursor sobre él */
+.with-background-image:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff; /* Color de texto en el hover */
+}
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-eye img {
+        width: 12px; /* Ajusta el tamaño del ícono para dispositivos móviles */
+        height: 12px;
+    }
+}
+@media (min-width: 769px) {
+    .btn-eye img {
+        max-width: 20px; /* Ajusta el tamaño máximo del ícono según lo necesites */
+        height: auto; /* Esto mantendrá la proporción de aspecto del ícono */
+    }
+}
+@media (min-width: 992px) {
+    .btn-eye img {
+        width: 25px; /* Ajusta el tamaño del ícono según lo necesites para dispositivos grandes */
+        height: 25px;
+    }
+}
+.with-background-image {
+    background-image: url("/static/images/frame_derecho_login.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: right center; /* Posiciona la imagen en el lado derecho y centrada verticalmente */
+    border-bottom: none; /* Elimina la línea del marco inferior */
+}
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Mantén la proporción de aspecto */
+    padding: 0px; /* Agrega un poco de espacio alrededor del logo */
+    z-index: 1; /* Coloca el logo encima del contenido */
+}
+.logo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.usb-logo {
+    width: 50px;
+    height: auto;
+}

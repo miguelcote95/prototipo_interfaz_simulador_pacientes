@@ -1,0 +1,261 @@
+/* Establece el estilo base para el cuerpo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #d7e7ec;
+    background-image: linear-gradient(rgb(197, 192, 192) 1px, transparent 1px), linear-gradient(90deg, gray 1px, transparent 1px);
+    background-size: 2.5px 2.5px;
+}
+
+.header-container {
+    background-image: linear-gradient(to right,orange,blue);
+    padding: 20px;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+/* Estilo para la línea blanca que se extiende a lo largo de la página */
+.bar-divider {
+    width: 100%;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 110px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+nav ul li.right {
+    float: right;
+    position: fixed;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    
+}
+
+aside {
+    background-color: #f2f2f2;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+.logo {
+    width: 300px;
+    height: 110px;
+    background: linear-gradient(to right, blue,rgba(26, 134, 22, 0));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Cambiado a position: fixed */
+    top: 0; /* Alineado con la parte superior del viewport */
+    left: 0; /* Alineado con la parte izquierda del viewport */
+    z-index: 1000; /* Colocado por encima del header */
+}
+
+aside {
+    background-color: transparent;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+.logo img {
+    width: 110px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Permite mantener la proporción original */
+    position: fixed;
+}
+
+section {
+    margin-left: 200px;
+    padding: 20px;
+    position: fixed;
+}
+.boton_menu_usuario a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+/* modificar el icono del boton*/
+.boton_menu_usuario img {
+    width: 60px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+/*modificar la letra del boton*/
+.boton_menu_informacion a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_informacion img {
+    width: 35px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+/*modificar la letra del boton*/
+.boton_menu_evaluacion a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_evaluacion img {
+    width: 65px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+
+.boton_menu_historial a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_historial img {
+    width: 80px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+.boton_menu_crearcasos a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_crearcasos img {
+    width: 60px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+.boton_menu_crearcasos a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_crearcasos img {
+    width: 60px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+
+}
+.boton_menu_casos a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff; /* Cambia este valor al color que desees */
+    /*font-family: "new times roman", sans-serif; /* Cambia "Nombre de la Fuente" al nombre de la fuente que deseas */
+    /*font-weight: bold; /* Aplicar negrita */
+}
+.boton_menu_casos img {
+    width: 60px; /* Cambia el tamaño según lo necesites */
+    height: auto; /* Permite mantener la proporción original */
+}
+.boton_menu_usuario {
+    position: relative;
+}
+
+.usuario-dropdown {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid #444;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.user-info {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+.boton_menu_usuario:hover .dropdown-menu {
+    display: block;
+    display: block;
+    right: auto; /* Restaurar la propiedad "right" */
+    left: -100%; /* Agregar la propiedad "left" con un valor negativo */
+}
+/* Establece el estilo base para el cuerpo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #d7e7ec;
+    background-image: linear-gradient(rgb(197, 192, 192) 1px, transparent 1px), linear-gradient(90deg, gray 1px, transparent 1px);
+    background-size: 2.5px 2.5px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que la página tenga al menos el 100% de la altura de la ventana gráfica */
+}
+.highlight-text {
+    color: red;
+    background-color: white; /* Color de fondo amarillo fosforescente */
+    font-weight: bold;
+    font-size: 20px; /* Tamaño de fuente deseado */
+    padding: 5px; /* Espacio alrededor del texto resaltado */
+    border-radius: 5px; /* Bordes redondeados para resaltar el texto */
+}

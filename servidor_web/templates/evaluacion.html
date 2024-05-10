@@ -1,0 +1,62 @@
+{% extends './base_de_la_pagina.html' %}
+
+{% block title%} evaluacion {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="static/css/evaluacion.css">
+
+<div class="contenido">
+    <h1>Evaluación</h1>
+    <p>Número de PIN:</p>
+    <input id="pin" readonly>
+    <button id="crear-evaluacion-btn" class="btn-crear-evaluacion">Crear Evaluación</button>
+</div>
+
+<form method="POST" id="terminar-evaluacion-form">
+    <div class="campo-container">
+        <input type="hidden" id="pin-input-2" name="pin-2">
+        <button type="submit" name="terminar-eva" class="btn-terminar-eva">Terminar Evaluación</button>
+    </div>
+</form>
+
+<div class="footer-divider"></div> <!-- Línea blanca que se extiende a lo largo de la página -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>Diseñado por: Luis Miguel Cote Montaña y Carolina Arboleda</p>
+            <p>Programa: Ingeniería electrónica</p>
+            <p>Año: 2023</p>
+        </div>
+        <div class="footer-logo">
+            <img src="static/images/usb_logo.png" alt="Logo de tu página">
+        </div>
+    </div>
+</div>
+<script>
+    function generarPIN() {
+        // Generar un número aleatorio de 4 dígitos como PIN
+        var pin = Math.floor(1000 + Math.random() * 9000);
+        // Mostrar el PIN generado en el campo de texto y en el campo oculto
+        document.getElementById("pin").value = pin;
+        document.getElementById("pin-input-2").value = pin;
+    }
+
+    document.getElementById("crear-evaluacion-btn").addEventListener("click", function () {
+        generarPIN();
+    });
+    
+    // Agregar la validación antes de enviar el formulario
+    document.getElementById("terminar-evaluacion-form").addEventListener("submit", function(event) {
+        // Imprimir el valor de pin-input-2 en la consola
+        console.log("Valor de pin-input-2:", document.getElementById("pin-input-2").value);
+        
+        // Verificar si el campo pin-input-2 está vacío
+        if (document.getElementById("pin-input-2").value === "") {
+            // Mostrar un mensaje de alerta
+            alert("Por favor, genere un PIN antes de enviar la evaluación.");
+            // Prevenir el envío del formulario
+            event.preventDefault();
+        }
+    });
+</script>
+{% endblock %}

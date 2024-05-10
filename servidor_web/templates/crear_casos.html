@@ -1,0 +1,263 @@
+{% extends './base_de_la_pagina.html' %}
+
+{% block title%} crear casos {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="static/css/crear_casos.css">
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+<form method="POST" id="formulario-crear-caso" autocomplete="off">
+    <div class="crear-casos-container ">
+        <!-- Campo para la temperatura -->
+        <label for="temperatura-crear">Temperatura:</label>
+        <input type="text" id="temperatura-crear" name="temperatura-crear" value="{{ temperatura }}">
+
+        <!-- Campo para la presión arterial -->
+        <label for="presion-arterial-crear">Presión Arterial:</label>
+        <input type="text" id="presion-arterial-crear" name="presion-arterial-crear" value="{{ presion_arterial }}">
+
+        <!-- Campo para el ritmo cardíaco -->
+        <label for="ritmo-cardiaco-crear">Ritmo Cardíaco:</label>
+        <input type="text" id="ritmo-cardiaco-crear" name="ritmo-cardiaco-crear" value="{{ ritmo_cardiaco }}">
+
+        <!-- Campo para el ritmo respiratorio -->
+        <label for="ritmo-respiratorio-crear">Ritmo Respiratorio:</label>
+        <input type="text" id="ritmo-respiratorio-crear" name="ritmo-respiratorio-crear"
+            value="{{ ritmo_respiratorio }}">
+
+        <!-- Campo para el nombre del caso (opcional) -->
+        <label for="nombre-caso">Nombre del Caso (opcional):</label>
+        <input type="text" id="nombre-caso" name="nombre-caso" value="{{ nombre_caso.replace('_', ' ') }}">
+        <div id="nombre-caso-error" class="error-message hidden">{{ nombre_caso_error }}</div>
+
+    </div>
+
+    <!-- Botón para crear caso -->
+    <button type="submit" name="btn-crear-caso" class="btn-crear-caso">crear caso</button>
+</form>
+<div class="info-container-simulacion">
+    <div class="info-box-simulacion">
+        <div class="info-item-simulacion-titulo"><strong>Simulacion actual</div>
+        <div class="info-item-simulacion-cont"><strong>Presión Arterial: </strong> {{ presion_arterial_s }}</div>
+        <div class="info-item-simulacion-cont"><strong>Ritmo Cardíaco: </strong> {{ ritmo_cardiaco_s }}</div>
+        <div class="info-item-simulacion-cont"><strong>Temperatura: </strong> {{ temperatura_s }}</div>
+        <div class="info-item-simulacion-cont"><strong>Ritmo Respiratorio: </strong> {{ ritmo_respiratorio_s }}</div>
+    </div>
+</div>
+<div class="tabla-scroll-container"> <!-- Contenedor de la tabla con desplazamiento -->
+    <table id="tabla-container">
+        <thead>
+            <tr class="encabezado">
+                <th>Caso Clínico</th>
+                <th>Temperatura</th>
+                <th>Presión Arterial</th>
+                <th>Ritmo Cardiaco</th>
+                <th>Frecuencia Respiratoria</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <!-- Cuerpo de la tabla -->
+        <tbody>
+            {% if casos is not none %}
+            {% for caso in casos %}
+            <tr>
+                <td>{{ caso[0] }}</td>
+                <td>{{ caso[1] }}°C</td>
+                <td>{{ caso[2] }} mmHg</td>
+                <td>{{ caso[3] }} bpm</td>
+                <td>{{ caso[4] }} rpm</td>
+                <td>{{ caso[5] }}</td>
+                <td>{{ caso[6] }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="7">No hay datos disponibles</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+<form method="POST" id="formulario-simular-caso" autocomplete="off">
+    <!-- Campo oculto para el nombre del caso -->
+    <input type="hidden" id="nombre-caso-seleccionado-simular" name="caso-simular">
+
+    <!-- Botón para simular caso -->
+    <div class="simular-caso-tabla">
+        <button type="button" class="btn-simular-caso-creado">Simular Caso (seleccione uno de la tabla)</button>
+    </div>
+</form>
+<form method="POST" id="formulario-eliminar-caso" autocomplete="off">
+    <!-- Campo oculto para el nombre del caso a eliminar -->
+    <input type="hidden" id="nombre-caso-seleccionado-eliminar" name="caso-eliminar">
+
+    <div class="eliminar-caso-tabla">
+        <button type="button" name="eliminar-caso" class="btn-eliminar-caso">Eliminar Caso (seleccione uno de la
+            tabla)</button>
+    </div>
+</form>
+<div class="footer-divider"></div> <!-- Línea blanca que se extiende a lo largo de la página -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>Diseñado por: Luis Miguel Cote Montaña y Carolina Arboleda</p>
+            <p>Programa: Ingenieria electronica</p>
+            <p>Año: 2023</p>
+        </div>
+        <div class="footer-logo">
+            <img src="static/images/usb_logo.png" alt="Logo de tu página">
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Al cargar la página, establece el texto inicial del botón.
+
+        var textoInicialBoton = 'Simular Caso (seleccione uno de la tabla)';
+        $('#nombre-caso').focusout(function () {
+            var nombreCasoError = $('#nombre-caso-error');
+            if ($(this).val() !== '') {
+                // Si el campo no está vacío, oculta el mensaje de error
+                nombreCasoError.addClass('hidden');
+            } else {
+                // Si el campo está vacío, muestra el mensaje de error
+                nombreCasoError.removeClass('hidden');
+            }
+        }).on('input', function () {
+            // Vuelve a ocultar el mensaje de error cuando se rellene nuevamente el campo
+            if ($(this).val() !== '') {
+                $('#nombre-caso-error').addClass('hidden');
+            }
+        });
+        function mostrarError(mensaje) {
+            alert(mensaje);
+        }
+        $('.btn-simular-caso-creado').text(textoInicialBoton);
+        // Agrega un controlador de eventos de clic a todas las filas de la tabla, excepto las filas con la clase "encabezado".
+        $('#tabla-container tbody tr').click(function () {
+            // Verificar si la fila tiene datos antes de continuar
+            if ($(this).children('td').filter(function () {
+                return $(this).text() !== '';
+            }).length === 0) {
+                // Si la fila no tiene datos, no hacer nada
+                return;
+            }
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                $('.btn-simular-caso-creado').text(textoInicialBoton);
+                $('.btn-eliminar-caso').text(textoInicialBoton);
+                $('#nombre-caso-seleccionado-simular').val('');
+                $('#nombre-caso-seleccionado-eliminar').val('');
+            } else {
+                $('#tabla-container tbody tr').removeClass('selected');
+                $(this).addClass('selected');
+
+                var casoClinico = $(this).find('td:first').text();
+                $('.btn-simular-caso-creado').text('Simular ' + casoClinico);
+                $('.btn-eliminar-caso').text('Eliminar ' + casoClinico);
+                $('#nombre-caso-seleccionado-simular').val(casoClinico);
+                $('#nombre-caso-seleccionado-eliminar').val(casoClinico);
+            }
+        });
+
+        $('.btn-simular-caso-creado').click(function () {
+            // Verifica si alguna fila está seleccionada.
+            if ($('#tabla-container tbody tr.selected').length > 0) {
+                // Envía el formulario cuando se haga clic en el botón "Simular Caso"
+                $('#formulario-simular-caso').submit();
+            } else {
+                alert('Seleccione un caso de la tabla antes de simular.');
+            }
+        });
+        // Agrega un controlador de eventos para el botón "Eliminar Caso".
+        $('.btn-eliminar-caso').click(function () {
+            // Verifica si alguna fila está seleccionada.
+            if ($('#tabla-container tbody tr.selected').length > 0) {
+                // Envía el formulario cuando se haga clic en el botón "Eliminar Caso"
+                $('#formulario-eliminar-caso').submit();
+            } else {
+                alert('Seleccione un caso de la tabla antes de eliminar.');
+            }
+        });
+        $('#formulario-crear-caso').submit(function (event) {
+            // Evita el envío del formulario por defecto
+            event.preventDefault();
+
+            // Obtenemos los valores de los campos
+            var temperatura = $('#temperatura-crear').val();
+            var presionArterial = $('#presion-arterial-crear').val();
+            var ritmoCardiaco = $('#ritmo-cardiaco-crear').val();
+            var ritmoRespiratorio = $('#ritmo-respiratorio-crear').val();
+
+            // Validamos si todos los campos obligatorios están vacíos
+            if (!temperatura && !presionArterial && !ritmoCardiaco && !ritmoRespiratorio) {
+                mostrarError('Debe llenar al menos uno de los campos obligatorios: temperatura, presión arterial, ritmo cardíaco o ritmo respiratorio.');
+                return;
+            }
+            // Validamos cada campo
+            if (isNaN(temperatura) || parseFloat(temperatura) < 36 || parseFloat(temperatura) > 40) {
+                mostrarError('¡¡La temperatura debe ser un número entre 36 y 40 grados Celsius.!!');
+                return;
+            }
+            if (presionArterial !== '') {
+                if (!/^(\d{2,3})\/(\d{2,3})$/.test(presionArterial)) {
+                    mostrarError('La presión arterial debe tener el formato correcto (por ejemplo, 120/80)');
+                    return;
+                } else {
+                    var partes = presionArterial.split('/');
+                    var sistolica = parseInt(partes[0]);
+                    var diastolica = parseInt(partes[1]);
+                    if (sistolica < 90 || sistolica > 180 || diastolica < 60 || diastolica >= 100) {
+                        mostrarError('La presión arterial debe estar en el rango de 90/60 mmHg a 180/100 mmHg');
+                        return;
+                    }
+                }
+            } else {
+                mostrarError('La presión arterial debe tener el formato correcto (por ejemplo, 120/80)');
+                return;
+            }
+            if (ritmoCardiaco !== '') {
+                if (isNaN(ritmoCardiaco) || parseFloat(ritmoCardiaco) < 60 || parseFloat(ritmoCardiaco) > 130) {
+                    mostrarError('¡¡El ritmo cardíaco debe estar entre 60 y 150 latidos por minuto!!');
+                    return;
+                }
+            }
+            if (ritmoRespiratorio < 12 || ritmoRespiratorio > 50) {
+                mostrarError('¡¡El ritmo respiratorio debe estar entre 12 y 50 respiraciones por minuto!!');
+                return;
+            }
+
+            // Si todas las validaciones pasan, se envía el formulario
+            this.submit();
+        });
+
+
+    });
+
+    verificarError();
+
+    // Función para verificar y mostrar u ocultar el mensaje de error
+    function verificarError() {
+        var mensajeError = $('#nombre-caso-error').text().trim(); // Obtener el texto del mensaje de error y eliminar espacios en blanco
+        if (mensajeError !== '') {
+            // Si hay un mensaje de error diferente de vacío, muestra la ventana de mensaje de error
+            $('#nombre-caso-error').removeClass('hidden');
+        } else {
+            // Si el mensaje de error está vacío, oculta la ventana de mensaje de error
+            $('#nombre-caso-error').addClass('hidden');
+        }
+    }
+
+    // Agregar un controlador de eventos cuando el texto del mensaje de error cambie
+    $('#nombre-caso-error').bind('DOMSubtreeModified', function () {
+        verificarError();
+    });
+</script>
+{% endblock %}

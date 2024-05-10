@@ -1,0 +1,206 @@
+html {
+    zoom: 80%;
+}
+/* Estilos para el contenedor principal */
+.simulacion-container {
+    margin: 60px 20px; /* Ajusta los márgenes vertical y horizontal */
+    width: 800px;
+}
+
+/* Estilos para los campos y botones de simulación */
+.campo {
+    margin-bottom: 5px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    position: relative;
+}
+
+
+/* Estilos para los botones antes de "Simular todo" */
+button.btn-simular-Temperatura,
+button.btn-simular-presion-arterial,
+button.btn-simular-ritmo-cardiaco,
+button.btn-simular-ritmo-respiratorio,
+button.btn-simular-caso-tabla { /* Agregamos una clase común */
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+
+button.btn-simular-Temperatura:hover,
+button.btn-simular-presion-arterial:hover,
+button.btn-simular-ritmo-cardiaco:hover,
+button.btn-simular-ritmo-respiratorio:hover,
+button.btn-simular-todo-en-conjunto:hover { /* Aplicamos los estilos en el hover */
+    background-color: #0F362D;
+}
+/* Estilo para el botón "Simular todo" */
+button.btn-simular-todo-en-conjunto {
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-top: 20px; 
+    margin-left: 50px;
+    position: absolute;
+}
+/* Estilo para el botón "Simular Caso" */
+button.btn-simular-caso-tabla {
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    position: relative;
+    top: 150px;
+    left: 850px;
+}
+#tabla-container {
+    margin-top: 20; 
+    margin-left: 20;
+    width: 800px;
+    margin-left: 20px;
+    position: absolute;
+    
+}
+table{
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+	padding: 20px;
+}
+
+thead{
+	background-color: #246355;
+	border-bottom: solid 5px #0F362D;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #369681;
+	color: white;
+}
+/* Agrega este CSS para resaltar las filas seleccionadas */
+tr.selected {
+    background-color: #369681;
+    color: white;
+}
+
+
+
+/* Cambio de estilo al pasar el cursor sobre el botón */
+.btn-simular-caso-tabla:hover {
+    background-color: #0F362D;
+}
+/* Estilo para la línea blanca que se extiende a lo largo de la página */
+.footer-divider {
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    margin-top: 350px;
+    position: absolute;
+}
+
+/* Estilo para el pie de página (footer) */
+.footer {
+    background-color: #246355; /* Color de fondo del campo verde */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 350px;
+ 
+}
+
+/* Estilos para el contenido del pie de página */
+.footer-content {
+    z-index: 1; /* Asegura que el contenido esté sobre la línea blanca */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para la información del diseñador en el pie de página */
+.footer-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el logo en el pie de página */
+.footer-logo img {
+    max-width: 100px;
+    height: auto;
+    margin-left: 10px; /* Espacio entre el texto y el logo */
+}
+.info-container-simulacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.info-box-simulacion {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 200px; /* Distancia desde la parte superior del contenedor padre */
+    right: 50px; /* Distancia desde el borde derecho del contenedor padre */
+    border: 2px solid white; /* Color del borde verde */
+    padding: 20px;
+    background-color: #246355; /* Fondo blanco */
+    border-radius: 10px; /* Borde redondeado */
+}
+
+.info-item-simulacion-titulo {
+    font-size: 28px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+.info-item-simulacion-cont {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}

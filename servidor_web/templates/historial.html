@@ -1,0 +1,51 @@
+{% extends './base_de_la_pagina.html' %}
+
+{% block title%} historial {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" type="text/css" href="static/css/historial.css">
+<div class="tabla-scroll-container"> <!-- Contenedor de la tabla con desplazamiento -->
+    <table id="tabla-container">
+        <!-- Encabezado de la tabla -->
+        <thead>
+            <tr class="encabezado">
+                <th>quien simulo</th>
+                <th>Temperatura</th>
+                <th>Presión Arterial</th>
+                <th>Ritmo Cardiaco</th>
+                <th>Frecuencia Respiratoria</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <!-- Cuerpo de la tabla -->
+        <tbody>
+            {% for caso in casos %}
+            <tr>
+                <td>{{ caso[0] }}</td>
+                <td>{{ caso[1] }}</td>
+                <td>{{ caso[2] }}°C</td>
+                <td>{{ caso[3] }} mmHg</td>
+                <td>{{ caso[4] }} bpm</td>
+                <td>{{ caso[5] }} rpm</td>
+                <td>{{ caso[6] }}</td>
+                <td>{{ caso[7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="footer-divider"></div> <!-- Línea blanca que se extiende a lo largo de la página -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p>Diseñado por: Luis Miguel Cote Montaña y Carolina Arboleda</p>
+            <p>Programa: Ingenieria electronica</p>
+            <p>Año: 2023</p>
+        </div>
+        <div class="footer-logo">
+            <img src="static/images/usb_logo.png" alt="Logo de tu página">
+        </div>
+    </div>
+</div>
+{% endblock %}

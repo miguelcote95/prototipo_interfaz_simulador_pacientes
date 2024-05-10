@@ -1,0 +1,253 @@
+html {
+    zoom: 80%;
+}
+.crear-casos-container {
+    margin-top: 60px !important;/* Aumenta el margen superior para moverlo hacia abajo */
+    width: 800px;
+    margin-left: 20px;  /* Alinea los elementos a la izquierda */
+}
+
+/* Estilo para el contenedor que permite el desplazamiento de la tabla */
+.tabla-scroll-container {
+    max-height: 400px; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical */
+    position: absolute;
+}
+
+/* Estilos para los campos y botones de simulación */
+.campo-container {
+    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-left: 10px; /* Ajusta el margen izquierdo de los campos */
+}
+label {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    margin-left: 0px; /* Ajusta el margen izquierdo de los campos de entrada */
+    margin-right: 100px; /* Agrega espacio entre los campos de entrada y los botones */
+    position: relative;
+}
+
+/* Estilos para los botones antes de "Simular todo" */
+
+
+button.btn-crear-caso:hover,
+button.btn-buscar-caso:hover,
+button.btn-simular-caso-creado:hover { /* Aplicamos los estilos en el hover */
+    background-color: #0F362D;
+}
+
+table{
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+	padding: 20px;
+}
+
+thead{
+	background-color: #246355;
+	border-bottom: solid 5px #0F362D;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #369681;
+	color: white;
+}
+/* Agrega este CSS para resaltar las filas seleccionadas */
+tr.selected {
+    background-color: #369681;
+    color: white;
+}
+
+button.btn-crear-caso {
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 450px;
+    left: 60px; 
+}
+button.btn-simular-caso-creado{
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 900px;
+    left: 1020px;
+}
+button.btn-eliminar-caso{
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 750px;
+    left: 1020px;
+}
+button.btn-buscar-caso{
+    padding: 10px 20px;
+    background-color: #246355;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 580px;
+    left: 250px;
+}
+/* Estilo para el elemento select */
+.select-ordenar {
+    width: 200px;
+    padding: 5px;
+    font-size: 16px;
+    margin-left: 0px;
+    position: absolute;
+}
+/* Estilos para el contenedor del campo de búsqueda */
+.buscar-caso {
+    margin-left: 20px; /* Ajusta el margen izquierdo según tus preferencias */
+}
+.crear-casos-container {
+    margin: 110px;
+    width: 800px;
+    margin-left: 20px;  /* Alinea los elementos a la izquierda */
+}
+/* Estilo para la línea blanca que se extiende a lo largo de la página */
+.footer-divider {
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    margin-top: 440px;
+    position: absolute;
+}
+
+/* Estilo para el pie de página (footer) */
+.footer {
+    background-color: #246355; /* Color de fondo del campo verde */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 450px;
+    position: absolute;
+    width: 100%;
+    
+}
+
+/* Estilos para el contenido del pie de página */
+.footer-content {
+    z-index: 1; /* Asegura que el contenido esté sobre la línea blanca */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+}
+
+/* Estilos para la información del diseñador en el pie de página */
+.footer-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#tabla-container {
+    margin-top: 30px;
+    width: 980px;
+    margin-left: 20px;
+    position: relative;
+    border-collapse: collapse;
+
+}
+#tabla-container tbody tr {
+    height: 57px; /* Establece una altura fija para todas las filas */
+}
+#tabla-container tr {
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre filas */
+}
+#tabla-container td, #tabla-container th {
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto a la izquierda */
+}
+
+/* Estilo para el logo en el pie de página */
+.footer-logo img {
+    max-width: 100px;
+    height: auto;
+    margin-left: 10px; /* Espacio entre el texto y el logo */
+}
+/* Estilo para el botón eliminar caso al pasar el cursor sobre él */
+button.btn-eliminar-caso:hover {
+    background-color: #0F362D; /* Cambia el color de fondo al pasar el cursor */
+}
+.info-container-simulacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.info-box-simulacion {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 200px; /* Distancia desde la parte superior del contenedor padre */
+    right: 50px; /* Distancia desde el borde derecho del contenedor padre */
+    border: 2px solid white; /* Color del borde verde */
+    padding: 20px;
+    background-color: #246355; /* Fondo blanco */
+    border-radius: 10px; /* Borde redondeado */
+}
+
+.info-item-simulacion-titulo {
+    font-size: 28px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+.info-item-simulacion-cont {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}

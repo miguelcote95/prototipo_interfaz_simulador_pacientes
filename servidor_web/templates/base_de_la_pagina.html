@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="static/css/base_de_la_pagina.css">
+</head>
+<div>
+    <p>Nombre: {{ nombre }}</p>
+    <p>Rol: {{ rol }}</p>
+</div>
+
+
+<body>
+    <div class="logo">
+        <img src="static/images/logo.png" alt="Logo">
+    </div>
+    <header class="header-container">
+        <nav>
+            <ul>
+
+                <li class="boton_menu_casos">
+                    <a href="{{ url_for('casos') }}">
+                        <img src="{{ url_for('static', filename='icons/boton_casos_blanco.png') }}" alt="casos icono">
+                        Casos
+                    </a>
+                </li>
+                <li class="boton_menu_crearcasos">
+                    <a href="{{ url_for('crear_casos') }}">
+                        <img src="{{ url_for('static', filename='icons/boton_crear_caso.png') }}"
+                            alt="crearcasos icono">
+                        Crear casos
+                    </a>
+                </li>
+
+                <li class="boton_menu_historial">
+                    <a href="{{ url_for('historial') }}">
+                        <img src="{{ url_for('static', filename='icons/boton_historial_blanco_v2.png') }}"
+                            alt="historial icono">
+                        Historial
+                    </a>
+                </li>
+
+                <li class="boton_menu_evaluacion">
+                    <a href="{{ url_for('evaluacion') }}">
+                        <img src="{{ url_for('static', filename='icons/boton_evaluacion_relleno_blanco.png') }}"
+                            alt="evaluacion icono">
+                        Evaluacion
+                    </a>
+                </li>
+
+                <li class="boton_menu_informacion">
+                    <a href="{{ url_for('informacion') }}">
+                        <img src="{{ url_for('static', filename='icons/boton_informacion_relleno_blanco.png') }}"
+                            alt="infrommacion Icono">
+                        Informacion
+                    </a>
+                </li>
+
+                <li class="boton_menu_usuario">
+                    <a href="#" class="usuario-dropdown">
+                        <img src="{{ url_for('static', filename='icons/usuario_relleno_blanco.png') }}"
+                            alt="Usuario Icono">
+                        Usuario
+                    </a>
+                    <ul class="dropdown-menu">
+                        <a class="user-info">{{ nombre }}</a>
+                        <li><a class="user-info">({{ rol }})</a></li>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Configuración</a></li>
+                        <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+<
+            </ul>
+            </ul>
+        </nav>
+        <div class="bar-divider"></div>
+    </header>
+    
+    <aside>
+
+    </aside>
+    <div class="container py-3">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const headerContainer = document.querySelector('.header-container');
+            let isHeaderScrolled = false;
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    if (!isHeaderScrolled) {
+                        headerContainer.classList.add('header-scrolled');
+                        isHeaderScrolled = true;
+                    }
+                } else {
+                    if (isHeaderScrolled) {
+                        headerContainer.classList.remove('header-scrolled');
+                        isHeaderScrolled = false;
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

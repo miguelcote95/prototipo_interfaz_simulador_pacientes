@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Enlaza los archivos CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Enlaza el archivo CSS personalizado -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            /* Elimina el margen predeterminado del cuerpo */
+            padding: 0;
+            /* Elimina el relleno predeterminado del cuerpo */
+            background: url("{{ url_for('static', filename='images/fondo_detras_de_los_frame_login.jpg') }}") repeat;
+        }
+
+        .background-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Color de fondo para que el contenido sea legible */
+        }
+    </style>
+
+</head>
+
+<body>
+    <section class="h-100 gradient-form" style="background: none;"> <!-- Cambia background-color a background: none -->
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="{{ url_for('static', filename='images/logo_login.png') }}"
+                                            style="width: 130px;" alt="logo">
+                                    </div>
+
+                                    <form method="POST" id="login-form"autocomplete="off" >
+                                        <p>Por favor, ingrese a su cuenta</p>
+                                        <div class="form-outline mb-1">
+                                            <input type="email" id="form2Example11" class="form-control" name="username"
+                                                placeholder="Ingrese el usuario" />
+                                            <label class="form-label" for="form2Example11">Usuario</label>
+                                        </div>
+
+                                        <div class="form-outline mb-1">
+                                            <input type="password" id="form2Example22" class="form-control"
+                                                name="password_login" placeholder="ingrese la contraseña" />
+                                            <label class="form-label" for="form2Example22">Contraseña</label>
+                                            <div class="btn-eye" onclick="togglePasswordVisibility()">
+                                                <img id="eyeIcon"
+                                                    src="{{ url_for('static', filename='images/ojo_cerrado.png') }}"
+                                                    alt="icono" />
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button
+                                                class="btn btn-primary btn-block fa-lg gradient-custom-2 with-background-image mb-1"
+                                                type="submit">Login</button>
+                                            <a class="text-muted" href="#!">¿Has olvidado la contraseña?</a>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-center pb-1">
+                                            <p class="mb-0 me-2">¿No tienes una cuenta?</p>
+                                            <a class="btn btn-outline-danger" href="{{ url_for('registro') }}">Crear nueva</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 with-background-image">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">Principalmente ayuda a gestionar diferentes casos</h4>
+                                    <p class="small mb-4">Que son enviados al simulador de pacientes como la
+                                        temperatura, ritmo cardiaco, frecuencia respiratoria y presión arterial,
+                                        las principales características que cumple el sistema:</p>
+                                    <ul class="small">
+                                        <li>Mandar el control para cambiar los síntomas del simulador de pacientes
+                                            de forma sencilla.</li>
+                                        <li>Sistemas de gestión de crear diferentes tipos de casos, que queden guardado
+                                            con su respectivo logueo de usuario.</li>
+                                        <li>Tener un registro de diferentes tipos de casos guardados con su nombre.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container py-3 background-container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    <!-- Enlaza los archivos JS de Bootstrap y otros scripts si los tienes -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+        </script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("form2Example22");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.src = "{{ url_for('static', filename='images/ojo_abierto.png') }}";
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.src = "{{ url_for('static', filename='images/ojo_cerrado.png') }}";
+            }
+        }
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            // Detener la acción por defecto para evitar el envío automático
+            event.preventDefault();
+            // Realizar aquí cualquier validación adicional o acción que necesites
+            // Luego, si todo está bien, puedes enviar el formulario manualmente:
+            this.submit();
+        });
+    </script>
+</body>
+
+</html>

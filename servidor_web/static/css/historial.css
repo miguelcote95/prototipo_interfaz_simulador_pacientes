@@ -1,0 +1,100 @@
+html {
+    zoom: 80%;
+}
+
+/* Estilo para el contenedor que permite el desplazamiento de la tabla */
+.tabla-scroll-container {
+    max-height: 400px; /* Ajusta la altura máxima según sea necesario */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical */
+    position: absolute;
+    margin-top: 80px;
+}
+th, td{
+	padding: 20px;
+}
+table{
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+thead{
+	background-color: #246355;
+	border-bottom: solid 5px #0F362D;
+	color: white;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #369681;
+	color: white;
+}
+/* Agrega este CSS para resaltar las filas seleccionadas */
+tr.selected {
+    background-color: #369681;
+    color: white;
+}
+/* Estilo para la línea blanca que se extiende a lo largo de la página */
+.footer-divider {
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    margin-top: 750px;
+    position: absolute;
+}
+
+/* Estilo para el pie de página (footer) */
+.footer {
+    background-color: #246355; /* Color de fondo del campo verde */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 750px;
+ 
+}
+
+/* Estilos para el contenido del pie de página */
+.footer-content {
+    z-index: 1; /* Asegura que el contenido esté sobre la línea blanca */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para la información del diseñador en el pie de página */
+.footer-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el logo en el pie de página */
+.footer-logo img {
+    max-width: 100px;
+    height: auto;
+    margin-left: 10px; /* Espacio entre el texto y el logo */
+}
+
+#tabla-container {
+    margin-top: 30px;
+    width: 980px;
+    margin-left: 20px;
+    position: relative;
+    border-collapse: collapse;
+
+}
+#tabla-container tbody tr {
+    height: 57px; /* Establece una altura fija para todas las filas */
+}
+#tabla-container tr {
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre filas */
+}
+#tabla-container td, #tabla-container th {
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto a la izquierda */
+}
