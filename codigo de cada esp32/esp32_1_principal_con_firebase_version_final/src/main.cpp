@@ -9,8 +9,8 @@
 #define LED_wifi 2
 #define pin_pulsador 4
 
-#define FIREBASE_HOST "https://simulador-de-pacientes-db11b-default-rtdb.firebaseio.com/"
-#define FIREBASE_AUTH "AIzaSyBseJ6HAiHJva-_e5wPPSkOTao1hfk6CMQ"
+#define FIREBASE_HOST "url de firebase"
+#define FIREBASE_AUTH "clave de autenticacion"
 #define DATABASE_PATH "control_de_signos_vitales/"
 FirebaseData firebaseData;
 
