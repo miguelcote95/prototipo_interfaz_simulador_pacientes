@@ -22,16 +22,16 @@ app = Flask(__name__)
 # Configurar las credenciales de Firebase
 # Inicializa la aplicación de Firebase con tus credenciales
 firebase_sdk = credentials.Certificate("simulador-de-pacientes-db11b-firebase-adminsdk-447re-450c6a73e9.json")
-firebase_admin.initialize_app(firebase_sdk,{'databaseURL' : 'https://simulador-de-pacientes-db11b-default-rtdb.firebaseio.com/'})
+firebase_admin.initialize_app(firebase_sdk,{'databaseURL' : 'https:url firebase/'})
 firebaseConfig = {
-                'apiKey': "AIzaSyBseJ6HAiHJva-_e5wPPSkOTao1hfk6CMQ",
-                'authDomain': "simulador-de-pacientes-db11b.firebaseapp.com",
-                'databaseURL': "https://simulador-de-pacientes-db11b-default-rtdb.firebaseio.com",
-                'projectId': "simulador-de-pacientes-db11b",
-                'storageBucket': "simulador-de-pacientes-db11b.appspot.com",
-                'messagingSenderId': "86248963895",
-                'appId': "1:86248963895:web:8b51acc07d7fba8f4a64b2",
-                'measurementId': "G-CY8R97HQKR"
+                'apiKey': "",
+                'authDomain': "",
+                'databaseURL': "",
+                'projectId': "",
+                'storageBucket': "",
+                'messagingSenderId': "",
+                'appId': "",
+                'measurementId': ""
 }
 firebase = pyrebase.initialize_app(firebaseConfig)
 db_consulta= firebase.database()
