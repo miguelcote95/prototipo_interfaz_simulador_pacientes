@@ -21,7 +21,7 @@ app = Flask(__name__)
 #Session(app)
 # Configurar las credenciales de Firebase
 # Inicializa la aplicación de Firebase con tus credenciales
-firebase_sdk = credentials.Certificate("simulador-de-pacientes-db11b-firebase-adminsdk-447re-450c6a73e9.json")
+firebase_sdk = credentials.Certificate("archivo.json")
 firebase_admin.initialize_app(firebase_sdk,{'databaseURL' : 'https:url firebase/'})
 firebaseConfig = {
                 'apiKey': "",
